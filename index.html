@@ -212,105 +212,34 @@
         </div>
     </main>
 
-
-
-
-
-
-
-   <style>
-    /* 1. Definición de variables de color (puedes ajustarlas a tu paleta) */
-    :root {
-        --verde-oscuro: #1e4620; /* Color principal del título */
-        --texto-suave: #666;    /* Color para la descripción secundaria */
-        --cyan-acento: #00bcd4;  /* Color decorativo opcional */
-        --blanco: #ffffff;
-        --sombra: rgba(0, 0, 0, 0.08); /* Sombra suave para efecto moderno */
-    }
-
-    /* 2. Estilos para el contenedor del video y texto */
-    .video-item {
-        background-color: var(--blanco);
-        border-radius: 20px; /* Bordes muy redondeados, estilo moderno */
-        overflow: hidden;    /* Asegura que el video respete los bordes redondeados */
-        box-shadow: 0 10px 30px var(--sombra); /* Sombra profunda y suave */
-        margin-bottom: 30px; /* Espacio abajo si hay más videos */
-        transition: transform 0.3s ease; /* Efecto suave al pasar el mouse */
-        border: 1px solid #f0f0f0; /* Borde sutil opcional */
-    }
-
-    /* Efecto al pasar el mouse (hover) */
-    .video-item:hover {
-        transform: translateY(-5px); /* Se eleva ligeramente */
-        box-shadow: 0 15px 35px rgba(0,0,0,0.12); /* Sombra más fuerte */
-    }
-
-    /* 3. Estilos para el contenedor del texto (debajo del video) */
-    .video-text-content {
-        padding: 25px; /* Espaciado interno generoso */
-    }
-
-    /* 4. Estilo para el TÍTULO PRINCIPAL */
-    .video-title {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        font-size: 1.4rem;        /* Tamaño grande y legible */
-        font-weight: 700;         /* Negrita "Bold" */
-        color: var(--verde-oscuro); /* Tu color de marca */
-        margin: 0 0 10px 0;       /* Margen solo abajo */
-        line-height: 1.2;         /* Interlineado ajustado */
-        letter-spacing: -0.5px;   /* Letras ligeramente más juntas, estilo moderno */
-    }
-
-    /* 5. Estilo para la DESCRIPCIÓN CORTA (Opcional) */
-    .video-description {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        font-size: 0.9rem;        /* Tamaño más pequeño */
-        font-weight: 400;         /* Peso normal */
-        color: var(--texto-suave); /* Gris suave */
-        margin: 0;
-        line-height: 1.5;         /* Interlineado cómodo */
-    }
-
-    /* 6. Contenedor Responsive para el video (Ratio 16:9) */
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%; /* Ratio 16:9 */
-        height: 0;
-        overflow: hidden;
-    }
-
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
-</style>
-
-<div class="video-item">
-    <div class="video-container">
-        <iframe src="https://youtu.be/fVeQzMD6EUQ?si=YTnpsW1JKe--6uuJ" allowfullscreen></iframe>
-    </div>
+    <section id="videos" class="video-section">
+        <div class="section-header">
+            <h2>Vive la Experiencia</h2>
+            <p>Mira lo que te espera en nuestras próximas salidas</p>
+        </div>
+        <div class="video-grid">
+            <div class="video-container">
+			
 	
-	<div class="video-item">
-    <div class="video-container">
-        <iframe src="https://youtu.be/d3cMtJHpRzs?si=DBU0YIeEoRrFEhLm" allowfullscreen></iframe>
-    </div>
-	
-	<div class="video-item">
-    <div class="video-container">
-        <iframe src="https://youtu.be/KBAGPKjaCFo?si=du3ZeeJQvEm4Vkqa"  allowfullscreen></iframe>
-    </div>
-	
-	
-
-    <div class="video-text-content">
-        <h3 class="video-title">Aventura en la Finca Mirador La Laguna</h3>
-        <p class="video-description">Vuela sobre las cascadas y descubre la magia del avistamiento de aves en este paraíso natural.</p>
-    </div>
-</div>
+			
+			
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/muHucbR-GTU?si=vegG4Po2tFeaHDWq" 
+	title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			
+                <iframe src="https://www.youtube.com/embed/fVeQzMD6EUQ?" allowfullscreen></iframe>
+            </div>
+			<div class="video-container">
+                <iframe src="https://www.youtube.com/embed/d3cMtJHpRzs?si=DBU0YIeEoRrFEhLm" allowfullscreen></iframe>
+            </div>
+			<div class="video-container">
+                <iframe src="https://www.youtube/embed/zJMkQ2FPYE8?si=RynYriANtcMkeW4P" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+				
+            </div>
+        </div>
+    </section>
 
     <section class="info-footer">
         <div class="info-container">
