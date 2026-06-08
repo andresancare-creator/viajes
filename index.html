@@ -102,7 +102,33 @@
         .modal-gallery img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
         .btn-whatsapp-modal { background: #25d366; color: white; padding: 15px; border-radius: 35px; display: block; text-align: center; text-decoration: none; font-weight: bold; margin: 20px 0; }
 
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        /* Botón Flotante de WhatsApp */
+        .btn-whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            z-index: 2500; /* Por encima de todo, incluyendo el modal */
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-whatsapp-float:hover {
+            background-color: #128c7e;
+            transform: scale(1.1);
+        }
+        @media (max-width: 768px) { 
+            .nav-links { display: none; } 
+            .btn-whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 28px; }
+        }
     </style>
 </head>
 <body>
@@ -211,7 +237,6 @@
         <div class="video-box"><iframe src="https://www.youtube.com/embed/zJMkQ2FPYE8" allowfullscreen></iframe></div>
         <div class="video-box"><iframe src="https://www.youtube.com/embed/KBAGPKjaCFo" allowfullscreen></iframe></div>
         <div class="video-box"><iframe src="https://www.youtube.com/embed/LiO0UvxQRCw" allowfullscreen></iframe></div>
-
     </div>
 
     <section class="mission-vision-container">
@@ -235,6 +260,10 @@
             <div id="galeriaModal" class="modal-gallery"></div>
         </div>
     </div>
+
+    <a href="https://wa.me/573194438910" class="btn-whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <script>
         function abrirModal(titulo, desc, fotos) {
