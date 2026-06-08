@@ -3,109 +3,516 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel | Andrew Aventurero</title>
+    <title>Andrew Aventurero | Trekking & Alta Montaña en Colombia</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
+        /* ==========================================================================
+           1. ESTILOS GENERALES Y CONFIGURACIÓN BASE
+           ========================================================================== */
         :root {
-            --verde-oscuro: #1b5e20;
-            --cyan: #00bcd4;
-            --texto: #333;
-            --texto-suave: #555;
-            --gris-fondo: #f4f7f6;
+            --verde-primario: #1b5e20;
+            --verde-hover: #0d3c11;
+            --cyan-secundario: #00bcd4;
+            --cyan-hover: #008ba3;
+            --oscuro: #212121;
+            --gris-texto: #555555;
+            --gris-fondo: #f8f9fa;
+            --blanco: #ffffff;
+            --shadow: 0 4px 15px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
         }
 
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; padding: 0; 
-            background-color: #ffffff; 
-            color: var(--texto);
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        /* Navegación */
-        nav { 
-            display: flex; justify-content: space-between; 
-            align-items: center; padding: 12px 5%; 
-            background: white; border-bottom: 1px solid #f0f0f0;
-            position: sticky; top: 0; z-index: 1000;
+        html {
+            scroll-behavior: smooth;
         }
-        .logo { color: var(--cyan); font-weight: bold; font-size: 22px; text-decoration: none; }
-        .nav-links { display: flex; list-style: none; gap: 20px; margin: 0; padding: 0; }
-        .nav-links a { 
-            text-decoration: none; color: #555; font-size: 11px; 
-            text-transform: uppercase; font-weight: 700; 
-            display: flex; align-items: center; gap: 6px;
-        }
-        .nav-links i { color: var(--cyan); font-size: 14px; }
-        .btn-reserva-nav { background: var(--cyan); color: white; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: bold; }
 
-        /* Hero */
-        .hero { 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1500'); 
-            background-size: cover; background-position: center; 
-            height: 350px; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; color: white; text-align: center;
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--oscuro);
+            background-color: var(--blanco);
+            line-height: 1.6;
         }
-        .hero h1 { font-size: 40px; margin: 0; }
 
-        /* Secciones Generales */
-        .section-header { text-align: center; margin: 60px 0 40px 0; }
-        .section-header h2 { color: var(--verde-oscuro); font-size: 32px; margin-bottom: 5px; }
-        .section-header p { color: var(--texto-suave); font-size: 16px; margin-top: 0; }
-        .about-section { max-width: 1100px; margin: 0 auto 40px auto; padding: 0 20px; line-height: 1.8; color: #555; text-align: center; }
+        /* ==========================================================================
+           2. MENÚ DE NAVEGACIÓN (STICKY NAV)
+           ========================================================================== */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 6%;
+            background-color: var(--blanco);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--verde-primario);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--cyan-secundario);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gris-texto);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--cyan-secundario);
+        }
+
+        .nav-links i {
+            font-size: 14px;
+        }
+
+        .btn-reserva-nav {
+            background-color: var(--cyan-secundario);
+            color: var(--blanco) !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-reserva-nav:hover {
+            background-color: var(--cyan-hover);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           3. HERO BANNER PRINCIPAL
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--blanco);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            font-weight: 300;
+            max-width: 600px;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+
+        /* ==========================================================================
+           4. SECCIONES ESTRUCTURALES (HISTORIA, DESTINOS, ETC.)
+           ========================================================================== */
+        .section-container {
+            padding: 70px 6% 40px 6%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-header h2 {
+            color: var(--verde-primario);
+            font-size: 34px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 12px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 4px;
+            background-color: var(--cyan-secundario);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            color: var(--gris-texto);
+            font-size: 16px;
+            margin-top: 15px;
+        }
+
+        /* Historia Personal */
+        .about-box {
+            background-color: var(--gris-fondo);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 6px solid var(--verde-primprimary, var(--verde-primario));
+            box-shadow: var(--shadow);
+        }
+
+        .about-text {
+            font-size: 15.5px;
+            color: var(--gris-texto);
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        /* Grid de Tarjetas de Destinos */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 35px;
+            margin-top: 20px;
+        }
+
+        .dest-card {
+            background: var(--blanco);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+        }
+
+        .dest-img {
+            height: 240px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .dest-content {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .dest-tag {
+            color: var(--cyan-secundario);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .dest-card h3 {
+            font-size: 21px;
+            color: var(--oscuro);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .experiencia-texto {
+            font-size: 13.5px;
+            color: var(--gris-texto);
+            margin-bottom: 25px;
+            min-height: 60px;
+        }
+
+        .btn-paquete {
+            align-self: flex-start;
+            border: 2px solid var(--cyan-secundario);
+            color: var(--cyan-secundario);
+            padding: 8px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+        }
+
+        .btn-paquete:hover {
+            background-color: var(--cyan-secundario);
+            color: var(--blanco);
+        }
+
+        /* ==========================================================================
+           5. GALERÍA DE VIDEOS (RESPONSIVE)
+           ========================================================================== */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+        }
+
+        .video-box {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background-color: #000;
+        }
+
+        .video-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* ==========================================================================
+           6. RECOMENDACIONES TÉCNICAS PARA EL SENDERISTA
+           ========================================================================== */
+        .recom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .recom-item {
+            background-color: var(--gris-fondo);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .recom-item:hover { transform: translateY(-3px); }
+
+        .recom-item i {
+            font-size: 32px;
+            color: var(--verde-primario);
+            margin-bottom: 15px;
+        }
+
+        .recom-item h4 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .recom-item p {
+            font-size: 13px;
+            color: var(--gris-texto);
+        }
+
+        /* ==========================================================================
+           7. VALORES CORPORATIVOS (MISIÓN Y VISIÓN)
+           ========================================================================== */
+        .mission-vision-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .corp-card {
+            background: var(--gris-fondo);
+            padding: 35px;
+            border-radius: 15px;
+            border-top: 4px solid var(--cyan-secundario);
+            box-shadow: var(--shadow);
+        }
+
+        .corp-card h3 {
+            font-size: 22px;
+            color: var(--oscuro);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .corp-card h3 i {
+            color: var(--verde-primario);
+        }
+
+        .corp-card p {
+            font-size: 14.5px;
+            color: var(--gris-texto);
+            line-height: 1.7;
+        }
+
+        /* ==========================================================================
+           8. MODAL INFORMATIVO DE DESTINOS
+           ========================================================================== */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: var(--blanco);
+            width: 100%;
+            max-width: 850px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            padding: 35px;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 22px;
+            font-size: 35px;
+            cursor: pointer;
+            color: #999;
+            transition: var(--transition);
+        }
+
+        .close-modal:hover { color: var(--oscuro); }
+
+        .modal-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-gallery img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .btn-whatsapp-modal {
+            display: block;
+            background-color: #25d366;
+            color: var(--blanco);
+            text-align: center;
+            padding: 14px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 25px;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+            transition: var(--transition);
+        }
+
+        .btn-whatsapp-modal:hover {
+            background-color: #128c7e;
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           9. FOOTER DE LA PÁGINA
+           ========================================================================== */
+        footer {
+            background-color: #111;
+            color: #bbb;
+            padding: 40px 6% 20px 6%;
+            text-align: center;
+            font-size: 13px;
+            border-top: 3px solid var(--verde-primario);
+        }
+
+        .footer-logo {
+            font-size: 22px;
+            color: var(--blanco);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo span { color: var(--cyan-secundario); }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+            margin: 15px 0;
+        }
+
+        .footer-links a {
+            color: #888;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover { color: var(--blanco); }
+
+        .copyright {
+            margin-top: 20px;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            color: #666;
+        }
+
+        /* ==========================================================================
+           10. COMPONENTES FLOTANTES INTERACTIVOS (WHATSAPP + CHATBOT)
+           ========================================================================== */
         
-        /* Grid de Destinos */
-        .destinations-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; max-width: 1200px; margin: 0 auto; padding: 20px; 
-        }
-        .dest-card { 
-            background: #fff; border-radius: 15px; overflow: hidden; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08); padding-bottom: 25px;
-            transition: 0.3s;
-        }
-        .dest-img { height: 220px; background-size: cover; background-position: center; }
-        .dest-content { padding: 20px; text-align: left; }
-        .dest-tag { color: var(--cyan); font-size: 11px; font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 8px; }
-        .dest-card h3 { font-size: 20px; margin: 5px 0 10px 0; color: #222; }
-        .experiencia-texto { font-size: 14px; color: var(--texto-suave); margin-bottom: 20px; line-height: 1.5; display: block; min-height: 45px; }
-        .btn-paquete { border: 2px solid var(--cyan); color: var(--cyan); padding: 8px 25px; border-radius: 20px; text-decoration: none; font-size: 12px; font-weight: bold; }
-
-        /* Misión y Visión */
-        .mission-vision-container { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 20px; max-width: 1100px; margin: 60px auto; padding: 0 20px;
-        }
-        .corp-card { 
-            background: var(--gris-fondo); padding: 30px; border-radius: 10px; 
-            border-left: 5px solid var(--cyan); text-align: left;
-        }
-        .corp-card h3 { color: #333; margin-top: 0; font-size: 20px; }
-
-        /* Videos */
-        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
-        .video-box { position: relative; padding-bottom: 56.25%; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-        /* Modal de Destinos */
-        .modal-overlay { 
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; 
-        }
-        .modal-content { 
-            background: white; width: 95%; max-width: 900px; max-height: 85vh; 
-            border-radius: 20px; overflow-y: auto; padding: 40px; position: relative;
-        }
-        .close-modal { position: absolute; top: 20px; right: 25px; font-size: 35px; cursor: pointer; color: #666; }
-        .modal-gallery { display: flex; flex-direction: column; gap: 25px; margin-top: 25px; }
-        .modal-gallery img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
-        .btn-whatsapp-modal { background: #25d366; color: white; padding: 15px; border-radius: 35px; display: block; text-align: center; text-decoration: none; font-weight: bold; margin: 20px 0; }
-
-        /* ==========================================
-           BOTONES FLOTANTES (MÁXIMA COMPATIBILIDAD)
-           ========================================== */
-        
-        /* WhatsApp Flotante (Base) */
+        /* Botón de WhatsApp Flotante NATIVO */
         .btn-whatsapp-float {
             position: fixed;
             bottom: 25px;
@@ -117,239 +524,297 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 2500;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: var(--transition);
             text-decoration: none;
         }
         .btn-whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
-        .btn-whatsapp-float svg { width: 32px; height: 32px; fill: white; }
+        .btn-whatsapp-float svg { width: 32px; height: 32px; fill: var(--blanco); }
 
-        /* Chatbot Flotante (Posicionado arriba de WhatsApp) */
+        /* Botón del Chatbot Flotante NATIVO */
         .btn-chatbot-float {
             position: fixed;
             bottom: 100px;
             right: 25px;
-            background-color: var(--verde-oscuro);
+            background-color: var(--verde-primario);
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             z-index: 2500;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: var(--transition);
         }
-        .btn-chatbot-float:hover { background-color: #0d3c11; transform: scale(1.1); }
-        .btn-chatbot-float svg { width: 30px; height: 30px; fill: white; }
+        .btn-chatbot-float:hover { background-color: var(--verde-hover); transform: scale(1.1); }
+        .btn-chatbot-float svg { width: 30px; height: 30px; fill: var(--blanco); }
 
-        /* Ventana del Chatbot */
+        /* Ventana Desplegable del Chatbot */
         .chatbot-window {
             display: none;
             position: fixed;
             bottom: 175px;
             right: 25px;
-            width: 340px;
-            height: 460px;
-            background-color: white;
-            border-radius: 15px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            width: 350px;
+            height: 480px;
+            background-color: var(--blanco);
+            border-radius: 16px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.2);
             z-index: 2600;
             flex-direction: column;
             overflow: hidden;
-            font-size: 14px;
+            font-size: 13.5px;
+            border: 1px solid #eee;
+            font-family: sans-serif;
         }
         .chat-header {
-            background-color: var(--verde-oscuro);
-            color: white;
+            background-color: var(--verde-primario);
+            color: var(--blanco);
             padding: 15px;
             font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .chat-header span { display: flex; align-items: center; gap: 8px; }
-        .chat-header svg { width: 20px; height: 20px; fill: white; }
+        .chat-header span { display: flex; align-items: center; gap: 8px; font-family: 'Poppins', sans-serif; }
+        .chat-header svg { width: 20px; height: 20px; fill: var(--blanco); }
         .close-chat { cursor: pointer; font-size: 24px; line-height: 1; }
+        
         .chat-messages {
             flex: 1;
             padding: 15px;
             overflow-y: auto;
-            background-color: #f9f9f9;
+            background-color: #fcfcfc;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
-        .msg { max-width: 80%; padding: 10px 14px; border-radius: 15px; line-height: 1.4; word-wrap: break-word; }
-        .msg.bot { background-color: #ebebeb; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .msg.user { background-color: var(--cyan); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        .msg { max-width: 82%; padding: 10px 14px; border-radius: 16px; line-height: 1.4; word-wrap: break-word; font-family: sans-serif; }
+        .msg.bot { background-color: #e0e0e0; color: #222; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.user { background-color: var(--cyan-secundario); color: var(--blanco); align-self: flex-end; border-bottom-right-radius: 2px; }
         
-        /* Botones de opciones sugeridas */
-        .chat-options { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; width: 100%; }
+        .chat-options { display: flex; flex-direction: column; gap: 6px; margin-top: 5px; width: 100%; }
         .chat-btn-opt {
-            background-color: white;
-            border: 1px solid var(--cyan);
-            color: var(--cyan);
-            padding: 6px 12px;
+            background-color: var(--blanco);
+            border: 1px solid var(--cyan-secundario);
+            color: var(--cyan-secundario);
+            padding: 7px 12px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11.5px;
             font-weight: bold;
             text-align: left;
-            transition: 0.2s;
+            transition: var(--transition);
         }
-        .chat-btn-opt:hover { background-color: var(--cyan); color: white; }
+        .chat-btn-opt:hover { background-color: var(--cyan-secundario); color: var(--blanco); }
 
-        .chat-input-area { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: white; }
-        .chat-input-area input { flex: 1; border: 1px solid #ddd; padding: 8px 12px; border-radius: 20px; outline: none; font-size: 13px; }
-        .chat-input-area button { background: none; border: none; color: var(--cyan); font-size: 16px; margin-left: 8px; cursor: pointer; }
+        .chat-input-area { display: flex; border-top: 1px solid #eee; padding: 12px; background-color: var(--blanco); }
+        .chat-input-area input { flex: 1; border: 1px solid #ddd; padding: 9px 15px; border-radius: 20px; outline: none; font-size: 13px; }
+        .chat-input-area button { background: none; border: none; color: var(--cyan-secundario); font-size: 18px; margin-left: 10px; cursor: pointer; transition: var(--transition); }
+        .chat-input-area button:hover { transform: scale(1.1); }
 
-        @media (max-width: 768px) { 
-            .nav-links { display: none; } 
+        /* Responsive Móvil Extremo */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero h1 { font-size: 34px; }
+            .hero p { font-size: 15px; }
             .btn-whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; }
-            .btn-chatbot-float { bottom: 90px; right: 20px; width: 55px; height: 55px; }
-            .chatbot-window { bottom: 160px; right: 10px; left: 10px; width: auto; height: 400px; }
+            .btn-chatbot-float { bottom: 85px; right: 20px; width: 55px; height: 55px; }
+            .chatbot-window { bottom: 155px; right: 10px; left: 10px; width: auto; height: 410px; }
         }
     </style>
 </head>
 <body>
 
-    <nav id="top">
-        <a href="#" class="logo">Travel .</a>
+    <nav id="inicio">
+        <a href="#" class="logo">Andrew<span>Aventurero</span></a>
         <ul class="nav-links">
-            <li><a href="#top"><i class="fa-solid fa-house"></i> Inicio</a></li>
-            <li><a href="#destinos"><i class="fa-solid fa-map-location-dot"></i> Destinos</a></li>
-            <li><a href="#videos"><i class="fa-solid fa-video"></i> Videos</a></li>
-            <li><a href="#mision"><i class="fa-solid fa-bullseye"></i> Misión</a></li>
-            <li><a href="#vision"><i class="fa-solid fa-eye"></i> Visión</a></li>
-            <li><a href="#nosotros"><i class="fa-solid fa-info-circle"></i> Nosotros</a></li>
+            <li><a href="#inicio"><i class="fa-solid fa-house"></i> Inicio</a></li>
+            <li><a href="#nosotros"><i class="fa-solid fa-user-check"></i> Nosotros</a></li>
+            <li><a href="#destinos"><i class="fa-solid fa-mountain-sun"></i> Destinos</a></li>
+            <li><a href="#videos"><i class="fa-solid fa-circle-play"></i> Galería</a></li>
+            <li><a href="#recomendaciones"><i class="fa-solid fa-kit-medical"></i> Consejos</a></li>
+            <li><a href="#valores"><i class="fa-solid fa-shield-halved"></i> Filosofía</a></li>
         </ul>
-        <a href="https://wa.me/573194438910" class="btn-reserva-nav">RESERVAR</a>
+        <a href="https://wa.me/573194438910" class="btn-reserva-nav" target="_blank">RESERVAR RUTA</a>
     </nav>
 
     <header class="hero">
         <h1>Andrew Aventurero</h1>
-        <p>Tu guía experto en la naturaleza salvaje de Colombia</p>
+        <p>Seguridad técnica y conexión profunda en las imponentes montañas de Colombia</p>
     </header>
 
-    <section class="section-header" id="nosotros">
-        <h2>Sobre Nosotros</h2>
-        <div class="about-section">
-            <p>Detrás de Andrew Aventurero hay una historia real. Hubo un tiempo en que la ansiedad y la depresión hicieron que mi mundo se volviera completamente oscuro. En medio de esa tormenta, salir a caminar, respirar el aire de la montaña y sentir la tierra bajo mis pies se convirtieron en mi terapia y mi salvación. Descubrí en primera persona que la naturaleza tiene un poder inmenso para sanar. Hoy, quiero compartir esa misma medicina con el mundo. No solo te llevamos a conocer los paisajes más imponentes del Valle del Cauca con la mayor seguridad técnica; te invitamos a vivir una experiencia de desconexión, superación y reencuentro contigo mismo a través del entorno natural. En Andrew Aventurero, no solo organizamos viajes; creamos expediciones que transforman. Nacimos de la pasión por las montañas del Valle del Cauca y el deseo de compartir la majestuosidad de nuestra biodiversidad con el mundo. Con guías expertos y un enfoque en la seguridad técnica, te llevamos a descubrir rincones donde la naturaleza aún reina soberana.</p>
+    <section class="section-container" id="nosotros">
+        <div class="section-header">
+            <h2>Nuestra Historia</h2>
+            <p>El origen de una pasión que transforma vidas</p>
+        </div>
+        <div class="about-box">
+            <p class="about-text">
+                Detrás de Andrew Aventurero hay una historia real. Hubo un tiempo en que la ansiedad y la depresión hicieron que mi mundo se volviera completamente oscuro. En medio de esa tormenta, salir a caminar, respirar el aire de la montaña y sentir la tierra bajo mis pies se convirtieron en mi terapia y mi salvación. Descubrí en primera persona que la naturaleza tiene un poder inmenso para sanar. Hoy, quiero compartir esa misma medicina con el mundo. No solo te llevamos a conocer los paisajes más imponentes del Valle del Cauca con la mayor seguridad técnica; te invitamos a vivir una experiencia de desconexión, superación y reencuentro contigo mismo a través del entorno natural. En Andrew Aventurero, no solo organizamos viajes; creamos expediciones que transforman. Nacimos de la pasión por las montañas del Valle del Cauca y el deseo de compartir la majestuosidad de nuestra biodiversidad con el mundo. Con guías expertos y un enfoque en la seguridad técnica, te llevamos a descubrir rincones donde la naturaleza aún reina soberana.
+            </p>
         </div>
     </section>
 
-    <section class="section-header" id="destinos">
-        <h2>Nuestros Próximos Destinos</h2>
-        <p>Selecciona tu próxima gran historia</p>
+    <section class="section-container" id="destinos">
+        <div class="section-header">
+            <h2>Próximas Expediciones</h2>
+            <p>Rutas técnicas diseñadas para vivir la montaña con absoluta responsabilidad</p>
+        </div>
+        
+        <div class="destinations-grid">
+            <div class="dest-card">
+                <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef');"></div>
+                <div class="dest-content">
+                    <div>
+                        <span class="dest-tag">Santa Helena, Valle</span>
+                        <h3>Mirador La Laguna</h3>
+                        <span class="experiencia-texto">Disfruta de un trekking de alta exigencia técnica hacia un mirador privilegiado en la cordillera.</span>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Mirador La Laguna 🍃', '📍 Ubicación: Vereda La Reina (El Cerrito, Valle).\n\n✅ Hospedaje en cabañas de montaña exclusivas.\n🥾 Guianza técnica certificada con equipo de navegación.\n🥧 Alimentación típica campesina balanceada para el desgaste físico.', ['https://images.unsplash.com/photo-1441974231531-c6227db76b6e', 'https://images.unsplash.com/photo-1501854140801-50d01698950b', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'])">VER DETALLES</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09');"></div>
+                <div class="dest-content">
+                    <div>
+                        <span class="dest-tag">Río Frío, Valle</span>
+                        <h3>Fenicia Mística</h3>
+                        <span class="experiencia-texto">Inmersión profunda en fincas cafeteras tradicionales y senderos envueltos en niebla de cordillera.</span>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Fenicia Mística 🌿', '📍 Ubicación: Corregimiento de Fenicia, Río Frío.\n\n✅ Tour de café especializado desde la semilla a la taza.\n🚐 Transporte privado logístico de ida y regreso.\n🍲 Almuerzo tradicional preparado en fogón de leña.', ['https://images.unsplash.com/photo-1495107336281-19951674829e', 'https://images.unsplash.com/photo-1527838832700-5059252407fa', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470'])">VER DETALLES</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b');"></div>
+                <div class="dest-content">
+                    <div>
+                        <span class="dest-tag">Tolima</span>
+                        <h3>Páramo Romerales</h3>
+                        <span class="experiencia-texto">Expedición de alta montaña cruzando ecosistemas de frailejones en las cercanías del Nevado.</span>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Páramo Romerales 🏔️', '📍 Ubicación: Alta Montaña del Tolima.\n\n✅ Ascenso guiado con parámetros internacionales de seguridad.\n🚙 Logística en camionetas 4x4 todoterreno.\n🥘 Plan de alimentación calórica de montaña e hidratación constante.', ['https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5', 'https://images.unsplash.com/photo-1519681393784-d120267933ba', 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4'])">VER DETALLES</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');"></div>
+                <div class="dest-content">
+                    <div>
+                        <span class="dest-tag">Tenerife, Valle</span>
+                        <h3>Laguna Negra</h3>
+                        <span class="experiencia-texto">Ruta de nivel medio para conocer un espejo de agua natural sagrado en la Cordillera Central.</span>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Laguna Negra 💧', '📍 Ubicación: Tenerife, Valle del Cauca.\n\n✅ Trekking regulado de nivel intermedio para adaptación aeróbica.\n🍎 Kit de refrigerio energético e hidratantes de montaña.\n📸 Cobertura fotográfica profesional durante el recorrido.', ['https://images.unsplash.com/photo-1506744038136-46273834b3fb', 'https://images.unsplash.com/photo-1439853949127-fa647821eba0', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470'])">VER DETALLES</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1');"></div>
+                <div class="dest-content">
+                    <div>
+                        <span class="dest-tag">Pradera, Valle</span>
+                        <h3>Portón del Cielo</h3>
+                        <span class="experiencia-texto">Mirador panorámico de primer nivel con una de las visuales geográficas más completas del departamento.</span>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Portón del Cielo ✨', '📍 Ubicación: Cordillera en Pradera, Valle.\n\n✅ Derecho de ingreso guiado al mirador panorámico.\n🥘 Almuerzo campestre con opciones vegetarianas disponibles.\n🛡️ Seguro de asistencia médica extrema con cobertura total.', ['https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1', 'https://images.unsplash.com/photo-1533240332313-0db49b459ad6', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef'])">VER DETALLES</a>
+                </div>
+            </div>
+
+            <div class="dest-card">
+                <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1464306208223-e0b4495a5553');"></div>
+                <div class="dest-content">
+                    <div>
+                        <span class="dest-tag">Cumbal, Nariño</span>
+                        <h3>Volcán Cumbal</h3>
+                        <span class="experiencia-texto">Trekking de alta montaña sobrepasando los 4.000 metros de altura en el imponente sur colombiano.</span>
+                    </div>
+                    <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Volcán Cumbal 🌋', '📍 Ubicación: Cumbal, Nariño.\n\n✅ Ascenso técnico controlado hasta el cráter principal.\n⛺ Campamento base con aislamiento térmico asistido.\n🍲 Nutrición e hidratación caliente en condiciones de baja temperatura.', ['https://images.unsplash.com/photo-1464306208223-e0b4495a5553', 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606', 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5'])">VER DETALLES</a>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <main class="destinations-grid">
-        <div class="dest-card">
-            <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef');"></div>
-            <div class="dest-content">
-                <span class="dest-tag">Santa Helena, Valle</span>
-                <h3>Mirador La Laguna</h3>
-                <span class="experiencia-texto">Disfruta de un senderismo técnico con la vista más impresionante hacia la laguna.</span>
-                <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Mirador La Laguna 🍃', '📍 Vereda La Reina (El Cerrito).\n\n✅ Cabañas de lujo.\n🥾 Guía de montaña.\n🥧 Comida campesina.', ['https://images.unsplash.com/photo-1441974231531-c6227db76b6e', 'https://images.unsplash.com/photo-1501854140801-50d01698950b', 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05'])">VER PAQUETE</a>
-            </div>
+    <section class="section-container" id="videos">
+        <div class="section-header">
+            <h2>Registros de Expedición</h2>
+            <p>La vivencia real documentada desde las cumbres</p>
         </div>
-
-        <div class="dest-card">
-            <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09');"></div>
-            <div class="dest-content">
-                <span class="dest-tag">Rio Frio, Valle</span>
-                <h3>Fenicia Mística</h3>
-                <span class="experiencia-texto">Vive la auténtica cultura cafetera rodeado de paisajes vírgenes y aire puro.</span>
-                <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Fenicia Mística 🌿', '📍 Rio Frio, Valle.\n\n✅ Tour de café.\n🚐 Transporte privado.\n🍲 Almuerzo típico.', ['https://images.unsplash.com/photo-1495107336281-19951674829e', 'https://images.unsplash.com/photo-1527838832700-5059252407fa', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470'])">VER PAQUETE</a>
-            </div>
+        
+        <div class="video-grid">
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/fVeQzMD6EUQ" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/d3cMtJHpRzs" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/zJMkQ2FPYE8" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/KBAGPKjaCFo" allowfullscreen></iframe></div>
+            <div class="video-box"><iframe src="https://www.youtube.com/embed/LiO0UvxQRCw" allowfullscreen></iframe></div>
         </div>
-
-        <div class="dest-card">
-            <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b');"></div>
-            <div class="dest-content">
-                <span class="dest-tag">Tolima</span>
-                <h3>Páramo Romerales</h3>
-                <span class="experiencia-texto">Una expedición desafiante de alta montaña diseñada para verdaderos aventureros.</span>
-                <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Páramo Romerales 🏔️', '📍 Tolima.\n\n✅ Ascenso guiado.\n🚙 Transporte 4x4.\n🥘 Alimentación montaña.', ['https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5', 'https://images.unsplash.com/photo-1519681393784-d120267933ba', 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4'])">VER PAQUETE</a>
-            </div>
-        </div>
-
-        <div class="dest-card">
-            <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');"></div>
-            <div class="dest-content">
-                <span class="dest-tag">Tenerife, Valle</span>
-                <h3>Laguna Negra</h3>
-                <span class="experiencia-texto">Descubre un espejo de agua escondido en lo más alto de la cordillera central.</span>
-                <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Laguna Negra 💧', '📍 Tenerife.\n\n✅ Trekking medio.\n🍎 Refrigerio.\n📸 Fotos.', ['https://images.unsplash.com/photo-1506744038136-46273834b3fb', 'https://images.unsplash.com/photo-1439853949127-fa647821eba0', 'https://images.unsplash.com/photo-1501785888041-af3ef285b470'])">VER PAQUETE</a>
-            </div>
-        </div>
-
-        <div class="dest-card">
-            <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1');"></div>
-            <div class="dest-content">
-                <span class="dest-tag">Pradera, Valle</span>
-                <h3>Portón del Cielo</h3>
-                <span class="experiencia-texto">Maravíllate con la mejor panorámica del Valle y disfruta de la gastronomía local.</span>
-                <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Portón del Cielo ✨', '📍 Pradera.\n\n✅ Ingreso mirador.\n🥘 Almuerzo tradicional.\n🛡️ Seguro.', ['https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1', 'https://images.unsplash.com/photo-1533240332313-0db49b459ad6', 'https://images.unsplash.com/photo-1500382017468-9049fed747ef'])">VER PAQUETE</a>
-            </div>
-        </div>
-
-        <div class="dest-card">
-            <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1464306208223-e0b4495a5553');"></div>
-            <div class="dest-content">
-                <span class="dest-tag">Cumbal, Nariño</span>
-                <h3>Volcán Cumbal</h3>
-                <span class="experiencia-texto">Camina sobre las nubes en el punto más alto del sur de Colombia.</span>
-                <a href="javascript:void(0)" class="btn-paquete" onclick="abrirModal('Volcán Cumbal 🌋', '📍 Nariño.\n\n✅ Ascenso cráter.\n⛺ Hospedaje base.\n🍲 Alimentación.', ['https://images.unsplash.com/photo-1464306208223-e0b4495a5553', 'https://images.unsplash.com/photo-1454496522488-7a8e488e8606', 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5'])">VER PAQUETE</a>
-            </div>
-        </div>
-    </main>
-
-    <section class="section-header" id="videos">
-        <h2>Vive la Experiencia</h2>
-        <p>Mira lo que te espera en nuestras próximas salidas</p>
     </section>
-    
-    <div class="video-grid">
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/fVeQzMD6EUQ" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/d3cMtJHpRzs" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/zJMkQ2FPYE8" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/KBAGPKjaCFo" allowfullscreen></iframe></div>
-        <div class="video-box"><iframe src="https://www.youtube.com/embed/LiO0UvxQRCw" allowfullscreen></iframe></div>
-    </div>
 
-    <section class="mission-vision-container">
-        <div class="corp-card" id="mision">
-            <h3>Nuestra Misión</h3>
-            <p>Promover la conexión con los ecosistemas de Colombia y el respeto por la biodiversidad mediante el senderismo técnico.</p>
+    <section class="section-container" id="recomendaciones">
+        <div class="section-header">
+            <h2>Preparación para la Ruta</h2>
+            <p>Elementos mínimos obligatorios para garantizar la seguridad colectiva</p>
         </div>
-        <div class="corp-card" id="vision">
-            <h3>Nuestra Visión</h3>
-            <p>Ser referentes de ecoturismo en el Valle del Cauca para 2030, reconocidos por nuestra seguridad y pasión.</p>
+        <div class="recom-grid">
+            <div class="recom-item">
+                <i class="fa-solid fa-boot-heeled" style="font-family:'Font Awesome 6 Free'; font-weight:900;">🥾</i>
+                <h4>Calzado Técnico</h4>
+                <p>Botas de montaña con suela de agarre profundo. Evita calzado liso o tenis urbanos.</p>
+            </div>
+            <div class="recom-item">
+                <i class="fa-solid fa-droplet"></i>
+                <h4>Hidratación</h4>
+                <p>Mínimo 2 litros de agua o electrolitos por jornada de caminata intermedia.</p>
+            </div>
+            <div class="recom-item">
+                <i class="fa-solid fa-shirt"></i>
+                <h4>Sistema de Capas</h4>
+                <p>Ropa de secado rápido, chaqueta cortavientos e impermeable para cambios de clima.</p>
+            </div>
+            <div class="recom-item">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <h4>Cuidado Ecológico</h4>
+                <p>Cero residuos en la montaña. Todo lo que sube regresa obligatoriamente con nosotros.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-container" id="valores">
+        <div class="mission-vision-container">
+            <div class="corp-card">
+                <h3><i class="fa-solid fa-bullseye"></i> Nuestra Misión</h3>
+                <p>Promover la conexión profunda con los ecosistemas de alta montaña en Colombia mediante el senderismo técnico guiado, impulsando el bienestar emocional, la superación personal y el respeto irrestricto por la biodiversidad local de manera segura y profesional.</p>
+            </div>
+            <div class="corp-card">
+                <h3><i class="fa-solid fa-eye"></i> Nuestra Visión</h3>
+                <p>Consolidarnos para el año 2030 como la plataforma de ecoturismo y montañismo técnico líder en el Valle del Cauca, siendo reconocidos a nivel nacional por nuestros rigurosos estándares de seguridad, mitigación de impacto ambiental y rescate del turismo con propósito social.</p>
+            </div>
         </div>
     </section>
 
     <div id="modalDestino" class="modal-overlay" onclick="cerrarModal()">
         <div class="modal-content" onclick="event.stopPropagation()">
             <span class="close-modal" onclick="cerrarModal()">&times;</span>
-            <h2 id="tituloModal" style="color: var(--verde-oscuro); font-size: 28px; margin-bottom: 15px;"></h2>
-            <div id="descModal" style="white-space: pre-line; line-height: 1.8; font-size: 16px; color: #444;"></div>
-            <a href="https://wa.me/573194438910" class="btn-whatsapp-modal" target="_blank">RESERVAR MI LUGAR</a>
-            <h3 style="color: var(--verde-oscuro); margin-top: 35px; margin-bottom: 20px;">Galería de la Experiencia</h3>
+            <h2 id="tituloModal" style="color: var(--verde-primario); font-size: 26px; margin-bottom: 15px; font-weight:700;"></h2>
+            <div id="descModal" style="white-space: pre-line; line-height: 1.8; font-size: 15px; color: var(--gris-texto);"></div>
+            <a href="https://wa.me/573194438910" class="btn-whatsapp-modal" target="_blank">RESERVAR RUTA VÍA WHATSAPP</a>
+            <h3 style="color: var(--verde-primario); margin-top: 30px; margin-bottom: 15px; font-weight:600;">Paisajes Esperados</h3>
             <div id="galeriaModal" class="modal-gallery"></div>
         </div>
     </div>
 
-    <a href="https://wa.me/573194438910" class="btn-whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
+    <a href="https://wa.me/573194438910" class="btn-whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos directamente">
         <svg viewBox="0 0 448 512">
             <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
         </svg>
     </a>
 
-    <div class="btn-chatbot-float" onclick="toggleChat()" title="Habla con nuestro asistente">
+    <div class="btn-chatbot-float" onclick="toggleChat()" title="Consultar Rutas Automáticas">
         <svg viewBox="0 0 24 24">
             <path d="M20,2H4C2.9,2,2,2.9,2,4v12c0,1.1,0.9,2,2,2h14l4,4V4C22,2.9,21.1,2,20,2z M12,14c-1.66,0-3-1.34-3-3s1.34-3,3-3s3,1.34,3,3 S13.66,14,12,14z M7,9.5C7,9.22,7.22,9,7.5,9h1C8.78,9,9,9.22,9,9.5v1C9,10.78,8.78,11,8.5,11h-1C7.22,11,7,10.78,7,10.5V9.5z M16.5,11h-1c-0.28,0-0.5-0.22-0.5-0.5v-1c0-0.28,0.22-0.5,0.5-0.5h1c0.28,0,0.5,0.22,0.5,0.5v1C17,10.78,16.78,11,16.5,11z"/>
         </svg>
@@ -365,26 +830,45 @@
         </div>
         <div class="chat-messages" id="chatMessages"></div>
         <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="evaluarEnter(event)">
+            <input type="text" id="chatInput" placeholder="Pregunta algo sobre las rutas..." onkeypress="evaluarEnter(event)">
             <button onclick="enviarMensajeUsuario()">➡️</button>
         </div>
     </div>
 
+    <footer>
+        <div class="footer-logo">Andrew<span>Aventurero</span></div>
+        <p>Cali, Valle del Cauca, Colombia</p>
+        <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#destinos">Destinos</a></li>
+            <li><a href="#recomendaciones">Consejos</a></li>
+        </ul>
+        <div class="copyright">
+            &copy; 2026 Andrew Aventurero. Todos los derechos reservados. Montañismo seguro con propósito integral.
+        </div>
+    </footer>
+
     <script>
-        // Lógica de control para la ventana Modal descriptiva
+        // --- CONTROL DEL MODAL DE DETALLES ---
         function abrirModal(titulo, desc, fotos) {
             document.getElementById('tituloModal').innerText = titulo;
             document.getElementById('descModal').innerText = desc;
             const galeria = document.getElementById('galeriaModal');
-            galeria.innerHTML = '';
+            galeria.innerHTML = ''; // Limpiar galería previa
+            
             fotos.forEach(url => {
                 const img = document.createElement('img');
                 img.src = url;
+                img.alt = "Imagen de la ruta " + titulo;
                 galeria.appendChild(img);
             });
             document.getElementById('modalDestino').style.display = 'flex';
         }
-        function cerrarModal() { document.getElementById('modalDestino').style.display = 'none'; }
+        
+        function cerrarModal() { 
+            document.getElementById('modalDestino').style.display = 'none'; 
+        }
 
         // --- SISTEMA INTEGÉRRIMO DEL CHATBOT ---
         const chatWindow = document.getElementById('chatbotWindow');
@@ -416,6 +900,7 @@
         function agregarBurbuja(texto, remitente) {
             const div = document.createElement('div');
             div.classList.add('msg', remitente);
+            // Reemplazo de saltos de línea y formateo simple de negritas
             div.innerHTML = texto.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             chatMessages.appendChild(div);
             chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -475,16 +960,18 @@
                 } else if (t.includes("porton") || t.includes("cielo")) { agregarBurbuja(infoDestinos.porton, "bot");
                 } else if (t.includes("cumbal")) { agregarBurbuja(infoDestinos.cumbal, "bot");
                 } else if (t.includes("precio") || t.includes("costo") || t.includes("valor") || t.includes("cuanto")) {
-                    agregarBurbuja("💰 Las tarifas varían según el paquete. Puedes consultar costos exactos haciendo clic directo en nuestro ícono flotante de WhatsApp.", "bot");
+                    agregarBurbuja("💰 Las tarifas varían según el paquete y número de aventureros. Puedes consultar costos exactos haciendo clic directo en nuestro ícono flotante de WhatsApp.", "bot");
                 } else if (t.includes("reserva") || t.includes("contacto") || t.includes("whatsapp")) {
-                    agregarBurbuja("¡Excelente elección! Puedes gestionar tu cupo directo escribiendo a nuestro WhatsApp oficial.", "bot");
+                    agregarBurbuja("¡Excelente elección! Puedes gestionar tu cupo directo escribiendo a nuestro WhatsApp oficial para atención inmediata.", "bot");
                 } else {
-                    agregarBurbuja("Como soy un asistente en entrenamiento, te recomiendo tocar el botón de **WhatsApp** para que nuestro equipo te dé soporte personalizado en tiempo real. 🥾⛰️", "bot");
+                    agregarBurbuja("Como soy un asistente en entrenamiento, te recomiendo tocar el botón inferior de **WhatsApp** para que nuestro equipo técnico te dé soporte totalmente personalizado. 🥾⛰️", "bot");
                 }
             }, 500);
         }
 
-        function evaluarEnter(e) { if (e.key === 'Enter') enviarMensajeUsuario(); }
+        function evaluarEnter(e) { 
+            if (e.key === 'Enter') enviarMensajeUsuario(); 
+        }
     </script>
 </body>
 </html>
