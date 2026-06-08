@@ -117,17 +117,119 @@
             align-items: center;
             font-size: 32px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-            z-index: 2500; /* Por encima de todo, incluyendo el modal */
+            z-index: 2500;
             transition: transform 0.3s ease, background-color 0.3s ease;
             text-decoration: none;
         }
-        .btn-whatsapp-float:hover {
-            background-color: #128c7e;
-            transform: scale(1.1);
+        .btn-whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
+
+        /* Botón Flotante del Chatbot (Ubicado arriba de WhatsApp) */
+        .btn-chatbot-float {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background-color: var(--verde-oscuro);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            z-index: 2500;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
         }
+        .btn-chatbot-float:hover { background-color: #0d3c11; transform: scale(1.1); }
+
+        /* Ventana del Chatbot */
+        .chatbot-window {
+            display: none;
+            position: fixed;
+            bottom: 175px;
+            right: 25px;
+            width: 340px;
+            height: 460px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            z-index: 2600;
+            flex-direction: column;
+            overflow: hidden;
+            font-size: 14px;
+        }
+        .chat-header {
+            background-color: var(--verde-oscuro);
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .chat-header span i { margin-right: 8px; }
+        .close-chat { cursor: pointer; font-size: 24px; line-height: 1; }
+        .chat-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .msg { max-width: 80%; padding: 10px 14px; border-radius: 15px; line-height: 1.4; word-wrap: break-word; }
+        .msg.bot { background-color: #ebebeb; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.user { background-color: var(--cyan); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
+        
+        /* Botones de opciones dentro del chat */
+        .chat-options { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; width: 100%; }
+        .chat-btn-opt {
+            background-color: white;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: left;
+            transition: 0.2s;
+        }
+        .chat-btn-opt:hover { background-color: var(--cyan); color: white; }
+
+        .chat-input-area {
+            display: flex;
+            border-top: 1px solid #eee;
+            padding: 10px;
+            background-color: white;
+        }
+        .chat-input-area input {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 20px;
+            outline: none;
+            font-size: 13px;
+        }
+        .chat-input-area button {
+            background: none;
+            border: none;
+            color: var(--cyan);
+            font-size: 18px;
+            margin-left: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chat-input-area button:hover { color: var(--verde-oscuro); }
+
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
             .btn-whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 28px; }
+            .btn-chatbot-float { bottom: 90px; right: 20px; width: 55px; height: 55px; font-size: 24px; }
+            .chatbot-window { bottom: 160px; right: 10px; left: 10px; width: auto; height: 400px; }
         }
     </style>
 </head>
@@ -265,7 +367,25 @@
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
+    <div class="btn-chatbot-float" onclick="toggleChat()" title="Habla con nuestro asistente">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chat-header">
+            <span><i class="fa-solid fa-robot"></i> Asistente Aventurero</span>
+            <span class="close-chat" onclick="toggleChat()">&times;</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            </div>
+        <div class="chat-input-area">
+            <input type="text" id="chatInput" placeholder="Escribe tu mensaje o pregunta..." onkeypress="evaluarEnter(event)">
+            <button onclick="enviarMensajeUsuario()"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
     <script>
+        // Lógica del Modal de Destinos
         function abrirModal(titulo, desc, fotos) {
             document.getElementById('tituloModal').innerText = titulo;
             document.getElementById('descModal').innerText = desc;
@@ -279,6 +399,134 @@
             document.getElementById('modalDestino').style.display = 'flex';
         }
         function cerrarModal() { document.getElementById('modalDestino').style.display = 'none'; }
+
+        // --- LÓGICA DEL CHATBOT ---
+        const chatWindow = document.getElementById('chatbotWindow');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        let botIniciado = false;
+
+        // Base de datos de información local para el Bot
+        const infoDestinos = {
+            laguna: "⛰️ **Mirador La Laguna (Santa Helena)**:\n📍 Ubicado en la Vereda La Reina (El Cerrito).\n✅ Ofrece senderismo técnico con vistas increíbles.\n🏠 Incluye estadía en cabañas de lujo, guía de montaña certificado y deliciosa comida campesina.",
+            fenicia: "🌿 **Fenicia Mística (Río Frío)**:\n📍 Ubicado en Río Frío, Valle.\n☕ Una experiencia para vivir la auténtica cultura cafetera.\n🚐 Incluye un completo tour de café, transporte privado y almuerzo típico tradicional.",
+            romerales: "🏔️ **Páramo Romerales (Tolima)**:\n📍 Alta montaña en el Tolima.\n🥾 Una expedición desafiante diseñada para verdaderos aventureros.\n🚙 Incluye ascenso guiado especializado, transporte en vehículos 4x4 y alimentación de montaña.",
+            negra: "💧 **Laguna Negra (Tenerife)**:\n📍 Ubicado en Tenerife, Valle.\n🥾 Un trekking de nivel medio ideal para descubrir un majestuoso espejo de agua escondido en la cordillera central.\n🍎 Incluye refrigerio energético y registro fotográfico.",
+            porton: "✨ **Portón del Cielo (Pradera)**:\n📍 Ubicado en Pradera, Valle.\n📸 Disfruta de la panorámica más imponente de toda la región y su gastronomía local.\n🥘 Incluye ingreso al mirador, almuerzo tradicional y seguro de asistencia médica.",
+            cumbal: "🌋 **Volcán Cumbal (Nariño)**:\n📍 Ubicado en Cumbal, Nariño.\n☁️ Camina literalmente sobre las nubes en el punto más alto del sur del país.\n⛺ Incluye ascenso guiado al cráter principal, hospedaje en la base y alimentación completa."
+        };
+
+        function toggleChat() {
+            if (chatWindow.style.display === 'none' || chatWindow.style.display === '') {
+                chatWindow.style.display = 'flex';
+                if (!botIniciado) {
+                    enviarSaludoBot();
+                    botIniciado = true;
+                }
+            } else {
+                chatWindow.style.display = 'none';
+            }
+        }
+
+        function agregarBurbuja(texto, remitente) {
+            const div = document.createElement('div');
+            div.classList.add('msg', remitente);
+            // Reemplazar saltos de línea y formateo básico de negritas
+            div.innerHTML = texto.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            chatMessages.appendChild(div);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            return div;
+        }
+
+        function enviarSaludoBot() {
+            agregarBurbuja("¡Hola! 👋 Soy tu Asistente Aventurero. Te puedo brindar información inmediata sobre nuestras expediciones. ¿Qué lugar te gustaría explorar?", "bot");
+            
+            // Crear botones de opciones rápidas
+            const contenedorOpciones = document.createElement('div');
+            contenedorOpciones.classList.add('chat-options');
+            
+            const opciones = [
+                { texto: "🍃 Mirador La Laguna", clave: "laguna" },
+                { texto: "🌿 Fenicia Mística", clave: "fenicia" },
+                { texto: "🏔️ Páramo Romerales", clave: "romerales" },
+                { texto: "💧 Laguna Negra", clave: "negra" },
+                { texto: "✨ Portón del Cielo", clave: "porton" },
+                { texto: "🌋 Volcán Cumbal", clave: "cumbal" }
+            ];
+
+            opciones.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.classList.add('chat-btn-opt');
+                btn.innerText = opt.texto;
+                btn.onclick = () => procesarSeleccionOpcion(opt.clave, opt.texto);
+                contenedorOpciones.appendChild(btn);
+            });
+
+            chatMessages.appendChild(contenedorOpciones);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function procesarSeleccionOpcion(clave, textoVisible) {
+            agregarBurbuja(textoVisible, "user");
+            setTimeout(() => {
+                const respuesta = infoDestinos[clave];
+                agregarBurbuja(respuesta, "bot");
+                ofrecerContacto();
+            }, 400);
+        }
+
+        function ofrecerContacto() {
+            setTimeout(() => {
+                agregarBurbuja("💬 Si deseas reservar tu cupo o hablar con un asesor humano, dale clic al botón verde de **WhatsApp** o escribe la palabra 'reserva'.", "bot");
+            }, 800);
+        }
+
+        function enviarMensajeUsuario() {
+            const texto = chatInput.value.trim();
+            if (!texto) return;
+
+            agregarBurbuja(texto, "user");
+            chatInput.value = '';
+
+            // Procesar entrada de texto básica mediante coincidencia de palabras clave
+            setTimeout(() => {
+                const textoMinuscula = texto.toLowerCase();
+                
+                if (textoMinuscula.includes("hola") || textoMinuscula.includes("buenos dias") || textoMinuscula.includes("buenas tardes")) {
+                    agregarBurbuja("¡Hola de nuevo! ¿En qué destino estás interesado hoy?", "bot");
+                } else if (textoMinuscula.includes("laguna") && textoMinuscula.includes("mirador")) {
+                    agregarBurbuja(infoDestinos.laguna, "bot");
+                    ofrecerContacto();
+                } else if (textoMinuscula.includes("fenicia")) {
+                    agregarBurbuja(infoDestinos.fenicia, "bot");
+                    ofrecerContacto();
+                } else if (textoMinuscula.includes("romerales") || textoMinuscula.includes("tolima")) {
+                    agregarBurbuja(infoDestinos.romerales, "bot");
+                    ofrecerContacto();
+                } else if (textoMinuscula.includes("negra")) {
+                    agregarBurbuja(infoDestinos.negra, "bot");
+                    ofrecerContacto();
+                } else if (textoMinuscula.includes("porton") || textoMinuscula.includes("cielo") || textoMinuscula.includes("pradera")) {
+                    agregarBurbuja(infoDestinos.porton, "bot");
+                    ofrecerContacto();
+                } else if (textoMinuscula.includes("cumbal") || textoMinuscula.includes("volcan")) {
+                    agregarBurbuja(infoDestinos.cumbal, "bot");
+                    ofrecerContacto();
+                } else if (textoMinuscula.includes("precio") || textoMinuscula.includes("costo") || textoMinuscula.includes("valor") || textoMinuscula.includes("cuanto cuesta")) {
+                    agregarBurbuja("💰 Las tarifas varían según la temporada y el tipo de paquete (compartido o privado). Puedes coordinar los costos exactos directamente por WhatsApp haciendo clic en el botón verde inferior.", "bot");
+                } else if (textoMinuscula.includes("reserva") || textoMinuscula.includes("reservar") || textoMinuscula.includes("contacto") || textoMinuscula.includes("whatsapp")) {
+                    agregarBurbuja("¡Excelente elección! Puedes formalizar tu reserva chateando directamente con nosotros al número **+57 3194438910** o tocando directamente el ícono flotante de WhatsApp.", "bot");
+                } else {
+                    agregarBurbuja("Interesante pregunta. Como soy un asistente en entrenamiento, te recomiendo presionar el botón verde de **WhatsApp** para que nuestro equipo técnico te guíe de forma personalizada en tiempo real. 🥾⛰️", "bot");
+                }
+            }, 500);
+        }
+
+        function evaluarEnter(e) {
+            if (e.key === 'Enter') {
+                enviarMensajeUsuario();
+            }
+        }
     </script>
 </body>
 </html>
