@@ -22,7 +22,7 @@
             color: var(--texto);
         }
 
-        /* Nav */
+        /* Navegación */
         nav { 
             display: flex; justify-content: space-between; 
             align-items: center; padding: 12px 5%; 
@@ -48,7 +48,7 @@
         }
         .hero h1 { font-size: 40px; margin: 0; }
 
-        /* Secciones */
+        /* Secciones Generales */
         .section-header { text-align: center; margin: 60px 0 40px 0; }
         .section-header h2 { color: var(--verde-oscuro); font-size: 32px; margin-bottom: 5px; }
         .section-header p { color: var(--texto-suave); font-size: 16px; margin-top: 0; }
@@ -69,7 +69,6 @@
         .dest-tag { color: var(--cyan); font-size: 11px; font-weight: 800; text-transform: uppercase; display: block; margin-bottom: 8px; }
         .dest-card h3 { font-size: 20px; margin: 5px 0 10px 0; color: #222; }
         .experiencia-texto { font-size: 14px; color: var(--texto-suave); margin-bottom: 20px; line-height: 1.5; display: block; min-height: 45px; }
-
         .btn-paquete { border: 2px solid var(--cyan); color: var(--cyan); padding: 8px 25px; border-radius: 20px; text-decoration: none; font-size: 12px; font-weight: bold; }
 
         /* Misión y Visión */
@@ -88,7 +87,7 @@
         .video-box { position: relative; padding-bottom: 56.25%; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Modal */
+        /* Modal de Destinos */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; 
@@ -102,38 +101,40 @@
         .modal-gallery img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 6px 15px rgba(0,0,0,0.15); }
         .btn-whatsapp-modal { background: #25d366; color: white; padding: 15px; border-radius: 35px; display: block; text-align: center; text-decoration: none; font-weight: bold; margin: 20px 0; }
 
-        /* Botón Flotante de WhatsApp */
+        /* ==========================================
+           BOTONES FLOTANTES (MÁXIMA COMPATIBILIDAD)
+           ========================================== */
+        
+        /* WhatsApp Flotante (Base) */
         .btn-whatsapp-float {
             position: fixed;
             bottom: 25px;
             right: 25px;
             background-color: #25d366;
-            color: white;
             width: 60px;
             height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 32px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
             z-index: 2500;
             transition: transform 0.3s ease, background-color 0.3s ease;
             text-decoration: none;
         }
         .btn-whatsapp-float:hover { background-color: #128c7e; transform: scale(1.1); }
+        .btn-whatsapp-float svg { width: 32px; height: 32px; fill: white; }
 
-        /* Botón Flotante del Chatbot (Blindado con tamaño explícito) */
+        /* Chatbot Flotante (Posicionado arriba de WhatsApp) */
         .btn-chatbot-float {
             position: fixed;
             bottom: 100px;
             right: 25px;
             background-color: var(--verde-oscuro);
-            color: white;
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            display: flex !important;
+            display: flex;
             justify-content: center;
             align-items: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -185,7 +186,7 @@
         .msg.bot { background-color: #ebebeb; color: #333; align-self: flex-start; border-bottom-left-radius: 2px; }
         .msg.user { background-color: var(--cyan); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
         
-        /* Botones de opciones */
+        /* Botones de opciones sugeridas */
         .chat-options { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; width: 100%; }
         .chat-btn-opt {
             background-color: white;
@@ -201,32 +202,13 @@
         }
         .chat-btn-opt:hover { background-color: var(--cyan); color: white; }
 
-        .chat-input-area {
-            display: flex;
-            border-top: 1px solid #eee;
-            padding: 10px;
-            background-color: white;
-        }
-        .chat-input-area input {
-            flex: 1;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            border-radius: 20px;
-            outline: none;
-            font-size: 13px;
-        }
-        .chat-input-area button {
-            background: none;
-            border: none;
-            color: var(--cyan);
-            font-size: 18px;
-            margin-left: 8px;
-            cursor: pointer;
-        }
+        .chat-input-area { display: flex; border-top: 1px solid #eee; padding: 10px; background-color: white; }
+        .chat-input-area input { flex: 1; border: 1px solid #ddd; padding: 8px 12px; border-radius: 20px; outline: none; font-size: 13px; }
+        .chat-input-area button { background: none; border: none; color: var(--cyan); font-size: 16px; margin-left: 8px; cursor: pointer; }
 
         @media (max-width: 768px) { 
             .nav-links { display: none; } 
-            .btn-whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; font-size: 28px; }
+            .btn-whatsapp-float { bottom: 20px; right: 20px; width: 55px; height: 55px; }
             .btn-chatbot-float { bottom: 90px; right: 20px; width: 55px; height: 55px; }
             .chatbot-window { bottom: 160px; right: 10px; left: 10px; width: auto; height: 400px; }
         }
@@ -255,8 +237,7 @@
     <section class="section-header" id="nosotros">
         <h2>Sobre Nosotros</h2>
         <div class="about-section">
-            <p>. ​Detrás de Andrew Aventurero hay una historia real. Hubo un tiempo en que la ansiedad y la depresión hicieron que mi mundo se volviera completamente oscuro. En medio de esa tormenta, salir a caminar, respirar el aire de la montaña y sentir la tierra bajo mis pies se convirtieron en mi terapia y mi salvación. Descubrí en primera persona que la naturaleza tiene un poder inmenso para sanar.
-​Hoy, quiero compartir esa misma medicina con el mundo. No solo te llevamos a conocer los paisajes más imponentes del Valle del Cauca con la mayor seguridad técnica; te invitamos a vivir una experiencia de desconexión, superación y reencuentro contigo mismo a través del entorno natural.  En Andrew Aventurero, no solo organizamos viajes; creamos expediciones que transforman. Nacimos de la pasión por las montañas del Valle del Cauca y el deseo de compartir la majestuosidad de nuestra biodiversidad con el mundo. Con guías expertos y un enfoque en la seguridad técnica, te llevamos a descubrir rincones donde la naturaleza aún reina soberana.</p>
+            <p>Detrás de Andrew Aventurero hay una historia real. Hubo un tiempo en que la ansiedad y la depresión hicieron que mi mundo se volviera completamente oscuro. En medio de esa tormenta, salir a caminar, respirar el aire de la montaña y sentir la tierra bajo mis pies se convirtieron en mi terapia y mi salvación. Descubrí en primera persona que la naturaleza tiene un poder inmenso para sanar. Hoy, quiero compartir esa misma medicina con el mundo. No solo te llevamos a conocer los paisajes más imponentes del Valle del Cauca con la mayor seguridad técnica; te invitamos a vivir una experiencia de desconexión, superación y reencuentro contigo mismo a través del entorno natural. En Andrew Aventurero, no solo organizamos viajes; creamos expediciones que transforman. Nacimos de la pasión por las montañas del Valle del Cauca y el deseo de compartir la majestuosidad de nuestra biodiversidad con el mundo. Con guías expertos y un enfoque en la seguridad técnica, te llevamos a descubrir rincones donde la naturaleza aún reina soberana.</p>
         </div>
     </section>
 
@@ -363,7 +344,9 @@
     </div>
 
     <a href="https://wa.me/573194438910" class="btn-whatsapp-float" target="_blank" rel="noopener noreferrer" title="Escríbenos por WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
+        <svg viewBox="0 0 448 512">
+            <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+        </svg>
     </a>
 
     <div class="btn-chatbot-float" onclick="toggleChat()" title="Habla con nuestro asistente">
@@ -380,16 +363,15 @@
             </span>
             <span class="close-chat" onclick="toggleChat()">&times;</span>
         </div>
-        <div class="chat-messages" id="chatMessages">
-            </div>
+        <div class="chat-messages" id="chatMessages"></div>
         <div class="chat-input-area">
             <input type="text" id="chatInput" placeholder="Escribe tu mensaje..." onkeypress="evaluarEnter(event)">
-            <button onclick="enviarMensajeUsuario()"><i class="fa-solid fa-paper-plane"></i></button>
+            <button onclick="enviarMensajeUsuario()">➡️</button>
         </div>
     </div>
 
     <script>
-        // Lógica del Modal de Destinos
+        // Lógica de control para la ventana Modal descriptiva
         function abrirModal(titulo, desc, fotos) {
             document.getElementById('tituloModal').innerText = titulo;
             document.getElementById('descModal').innerText = desc;
@@ -404,7 +386,7 @@
         }
         function cerrarModal() { document.getElementById('modalDestino').style.display = 'none'; }
 
-        // --- LÓGICA DEL CHATBOT ---
+        // --- SISTEMA INTEGÉRRIMO DEL CHATBOT ---
         const chatWindow = document.getElementById('chatbotWindow');
         const chatMessages = document.getElementById('chatMessages');
         const chatInput = document.getElementById('chatInput');
@@ -437,7 +419,6 @@
             div.innerHTML = texto.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             chatMessages.appendChild(div);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-            return div;
         }
 
         function enviarSaludoBot() {
@@ -459,27 +440,20 @@
                 const btn = document.createElement('button');
                 btn.classList.add('chat-btn-opt');
                 btn.innerText = opt.texto;
-                btn.onclick = () => procesarSeleccionOpcion(opt.clave, opt.texto);
+                btn.onclick = () => {
+                    agregarBurbuja(opt.texto, "user");
+                    setTimeout(() => {
+                        agregarBurbuja(infoDestinos[opt.clave], "bot");
+                        setTimeout(() => {
+                            agregarBurbuja("💬 Si deseas reservar tu cupo o hablar con un asesor, dale clic al botón verde de **WhatsApp** o escribe la palabra 'reserva'.", "bot");
+                        }, 600);
+                    }, 400);
+                };
                 contenedorOpciones.appendChild(btn);
             });
 
             chatMessages.appendChild(contenedorOpciones);
             chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        function procesarSeleccionOpcion(clave, textoVisible) {
-            agregarBurbuja(textoVisible, "user");
-            setTimeout(() => {
-                const respuesta = infoDestinos[clave];
-                agregarBurbuja(respuesta, "bot");
-                ofrecerContacto();
-            }, 400);
-        }
-
-        function ofrecerContacto() {
-            setTimeout(() => {
-                agregarBurbuja("💬 Si deseas reservar tu cupo o hablar con un asesor humano, dale clic al botón verde de **WhatsApp** o escribe la palabra 'reserva'.", "bot");
-            }, 800);
         }
 
         function enviarMensajeUsuario() {
@@ -490,43 +464,27 @@
             chatInput.value = '';
 
             setTimeout(() => {
-                const textoMinuscula = texto.toLowerCase();
+                const t = texto.toLowerCase();
                 
-                if (textoMinuscula.includes("hola") || textoMinuscula.includes("buenos dias") || textoMinuscula.includes("buenas tardes")) {
+                if (t.includes("hola") || t.includes("buenos") || t.includes("buenas")) {
                     agregarBurbuja("¡Hola de nuevo! ¿En qué destino estás interesado hoy?", "bot");
-                } else if (textoMinuscula.includes("laguna") && textoMinuscula.includes("mirador")) {
-                    agregarBurbuja(infoDestinos.laguna, "bot");
-                    ofrecerContacto();
-                } else if (textoMinuscula.includes("fenicia")) {
-                    agregarBurbuja(infoDestinos.fenicia, "bot");
-                    ofrecerContacto();
-                } else if (textoMinuscula.includes("romerales") || textoMinuscula.includes("tolima")) {
-                    agregarBurbuja(infoDestinos.romerales, "bot");
-                    ofrecerContacto();
-                } else if (textoMinuscula.includes("negra")) {
-                    agregarBurbuja(infoDestinos.negra, "bot");
-                    ofrecerContacto();
-                } else if (textoMinuscula.includes("porton") || textoMinuscula.includes("cielo") || textoMinuscula.includes("pradera")) {
-                    agregarBurbuja(infoDestinos.porton, "bot");
-                    ofrecerContacto();
-                } else if (textoMinuscula.includes("cumbal") || textoMinuscula.includes("volcan")) {
-                    agregarBurbuja(infoDestinos.cumbal, "bot");
-                    ofrecerContacto();
-                } else if (textoMinuscula.includes("precio") || textoMinuscula.includes("costo") || textoMinuscula.includes("valor") || textoMinuscula.includes("cuanto cuesta")) {
-                    agregarBurbuja("💰 Las tarifas varían según la temporada y el tipo de paquete (compartido o privado). Puedes coordinar los costos exactos directamente por WhatsApp haciendo clic en el botón verde inferior.", "bot");
-                } else if (textoMinuscula.includes("reserva") || textoMinuscula.includes("reservar") || textoMinuscula.includes("contacto") || textoMinuscula.includes("whatsapp")) {
-                    agregarBurbuja("¡Excelente elección! Puedes formalizar tu reserva chateando directamente con nosotros al número **+57 3194438910** o tocando directamente el ícono flotante de WhatsApp.", "bot");
+                } else if (t.includes("laguna") && t.includes("mirador")) { agregarBurbuja(infoDestinos.laguna, "bot");
+                } else if (t.includes("fenicia")) { agregarBurbuja(infoDestinos.fenicia, "bot");
+                } else if (t.includes("romerales") || t.includes("tolima")) { agregarBurbuja(infoDestinos.romerales, "bot");
+                } else if (t.includes("negra")) { agregarBurbuja(infoDestinos.negra, "bot");
+                } else if (t.includes("porton") || t.includes("cielo")) { agregarBurbuja(infoDestinos.porton, "bot");
+                } else if (t.includes("cumbal")) { agregarBurbuja(infoDestinos.cumbal, "bot");
+                } else if (t.includes("precio") || t.includes("costo") || t.includes("valor") || t.includes("cuanto")) {
+                    agregarBurbuja("💰 Las tarifas varían según el paquete. Puedes consultar costos exactos haciendo clic directo en nuestro ícono flotante de WhatsApp.", "bot");
+                } else if (t.includes("reserva") || t.includes("contacto") || t.includes("whatsapp")) {
+                    agregarBurbuja("¡Excelente elección! Puedes gestionar tu cupo directo escribiendo a nuestro WhatsApp oficial.", "bot");
                 } else {
-                    agregarBurbuja("Interesante pregunta. Como soy un asistente en entrenamiento, te recomiendo presionar el botón verde de **WhatsApp** para que nuestro equipo técnico te guíe de forma personalizada en tiempo real. 🥾⛰️", "bot");
+                    agregarBurbuja("Como soy un asistente en entrenamiento, te recomiendo tocar el botón de **WhatsApp** para que nuestro equipo te dé soporte personalizado en tiempo real. 🥾⛰️", "bot");
                 }
             }, 500);
         }
 
-        function evaluarEnter(e) {
-            if (e.key === 'Enter') {
-                enviarMensajeUsuario();
-            }
-        }
+        function evaluarEnter(e) { if (e.key === 'Enter') enviarMensajeUsuario(); }
     </script>
 </body>
 </html>
